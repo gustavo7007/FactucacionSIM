@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://controller.fest.fac.sre.sin.gob.bo/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="FacturacionEstandarControllerService" targetNamespace="http://controller.fest.fac.sre.sin.gob.bo/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://presiatservicios.impuestos.gob.bo:39112/FacturaComputarizadaStandar?xsd=1" namespace="http://controller.fest.fac.sre.sin.gob.bo/" />
+    </xsd:schema>
+  </types>
+  <message name="validacionAnulacionFacturaComputariazada">
+    <part name="parameters" element="tns:validacionAnulacionFacturaComputariazada" />
+  </message>
+  <message name="validacionAnulacionFacturaComputariazadaResponse">
+    <part name="parameters" element="tns:validacionAnulacionFacturaComputariazadaResponse" />
+  </message>
+  <message name="recepcionPaqueteFacturaComputarizada">
+    <part name="parameters" element="tns:recepcionPaqueteFacturaComputarizada" />
+  </message>
+  <message name="recepcionPaqueteFacturaComputarizadaResponse">
+    <part name="parameters" element="tns:recepcionPaqueteFacturaComputarizadaResponse" />
+  </message>
+  <message name="validacionRecepcionFacturaComputarizada">
+    <part name="parameters" element="tns:validacionRecepcionFacturaComputarizada" />
+  </message>
+  <message name="validacionRecepcionFacturaComputarizadaResponse">
+    <part name="parameters" element="tns:validacionRecepcionFacturaComputarizadaResponse" />
+  </message>
+  <message name="validacionRecepcionPaqueteFacturaComputarizada">
+    <part name="parameters" element="tns:validacionRecepcionPaqueteFacturaComputarizada" />
+  </message>
+  <message name="validacionRecepcionPaqueteFacturaComputarizadaResponse">
+    <part name="parameters" element="tns:validacionRecepcionPaqueteFacturaComputarizadaResponse" />
+  </message>
+  <message name="anulacionFacturaComputarizada">
+    <part name="parameters" element="tns:anulacionFacturaComputarizada" />
+  </message>
+  <message name="anulacionFacturaComputarizadaResponse">
+    <part name="parameters" element="tns:anulacionFacturaComputarizadaResponse" />
+  </message>
+  <message name="verificarConexion">
+    <part name="parameters" element="tns:verificarConexion" />
+  </message>
+  <message name="verificarConexionResponse">
+    <part name="parameters" element="tns:verificarConexionResponse" />
+  </message>
+  <message name="recepcionFacturaComputarizada">
+    <part name="parameters" element="tns:recepcionFacturaComputarizada" />
+  </message>
+  <message name="recepcionFacturaComputarizadaResponse">
+    <part name="parameters" element="tns:recepcionFacturaComputarizadaResponse" />
+  </message>
+  <portType name="FacturacionEstandarController">
+    <operation name="validacionAnulacionFacturaComputariazada">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/validacionAnulacionFacturaComputariazadaRequest" message="tns:validacionAnulacionFacturaComputariazada" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/validacionAnulacionFacturaComputariazadaResponse" message="tns:validacionAnulacionFacturaComputariazadaResponse" />
+    </operation>
+    <operation name="recepcionPaqueteFacturaComputarizada">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/recepcionPaqueteFacturaComputarizadaRequest" message="tns:recepcionPaqueteFacturaComputarizada" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/recepcionPaqueteFacturaComputarizadaResponse" message="tns:recepcionPaqueteFacturaComputarizadaResponse" />
+    </operation>
+    <operation name="validacionRecepcionFacturaComputarizada">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/validacionRecepcionFacturaComputarizadaRequest" message="tns:validacionRecepcionFacturaComputarizada" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/validacionRecepcionFacturaComputarizadaResponse" message="tns:validacionRecepcionFacturaComputarizadaResponse" />
+    </operation>
+    <operation name="validacionRecepcionPaqueteFacturaComputarizada">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/validacionRecepcionPaqueteFacturaComputarizadaRequest" message="tns:validacionRecepcionPaqueteFacturaComputarizada" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/validacionRecepcionPaqueteFacturaComputarizadaResponse" message="tns:validacionRecepcionPaqueteFacturaComputarizadaResponse" />
+    </operation>
+    <operation name="anulacionFacturaComputarizada">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/anulacionFacturaComputarizadaRequest" message="tns:anulacionFacturaComputarizada" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/anulacionFacturaComputarizadaResponse" message="tns:anulacionFacturaComputarizadaResponse" />
+    </operation>
+    <operation name="verificarConexion">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/verificarConexionRequest" message="tns:verificarConexion" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/verificarConexionResponse" message="tns:verificarConexionResponse" />
+    </operation>
+    <operation name="recepcionFacturaComputarizada">
+      <input wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/recepcionFacturaComputarizadaRequest" message="tns:recepcionFacturaComputarizada" />
+      <output wsam:Action="http://controller.fest.fac.sre.sin.gob.bo/FacturacionEstandarController/recepcionFacturaComputarizadaResponse" message="tns:recepcionFacturaComputarizadaResponse" />
+    </operation>
+  </portType>
+  <binding name="FacturacionEstandarControllerPortBinding" type="tns:FacturacionEstandarController">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="validacionAnulacionFacturaComputariazada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="recepcionPaqueteFacturaComputarizada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validacionRecepcionFacturaComputarizada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validacionRecepcionPaqueteFacturaComputarizada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="anulacionFacturaComputarizada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarConexion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="recepcionFacturaComputarizada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FacturacionEstandarControllerService">
+    <port name="FacturacionEstandarControllerPort" binding="tns:FacturacionEstandarControllerPortBinding">
+      <soap:address location="https://presiatservicios.impuestos.gob.bo:39112/FacturaComputarizadaStandar" />
+    </port>
+  </service>
+</definitions>

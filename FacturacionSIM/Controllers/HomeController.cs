@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FacturacionSIM.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,12 @@ namespace FacturacionSIM.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+		private readonly ICompomentes icompomentes;
+		public HomeController(ICompomentes compomentes)
+		{
+			icompomentes = compomentes;
+		}
+		// GET: Home
         public ActionResult Index()
         {
             return View();

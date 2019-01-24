@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +50,10 @@
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="ChilkatDotNet46, Version=9.5.0.76, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ChilkatDotNet46.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -99,8 +104,10 @@
       <HintPath>..\packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -6507,6 +6514,39 @@
     <Content Include="bower_components\select2\tests\vendor\qunit-1.23.1.css" />
     <Content Include="bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="bower_components\select2\vendor\jquery-2.1.0.js" />
+    <None Include="Connected Services\ServiceFacturaComputarizadaStandar\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceFacturaComputarizadaStandar\configuration.svcinfo" />
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.anulacionFacturaComputarizadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.recepcionFacturaComputarizadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.recepcionPaqueteFacturaComputarizadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.respuestaListaRegistroRecepcionesSoapDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.respuestaValidacionRecepcionPaqueteDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.validacionAnulacionFacturaComputariazadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.validacionRecepcionFacturaComputarizadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.validacionRecepcionPaqueteFacturaComputarizadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionSIM.ServiceFacturaComputarizadaStandar.verificarConexionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServiceFacturaComputarizadaStandar\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -6627,6 +6667,10 @@
     <Content Include="Models\Data\USER\users.edmx.diagram">
       <DependentUpon>users.edmx</DependentUpon>
     </Content>
+    <None Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturacionEstandarControllerService.wsdl" />
+    <None Include="Connected Services\ServiceFacturaComputarizadaStandar\FacturaComputarizadaStandar.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -6652,7 +6696,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases\AutorizarAtributo.cs" />
+    <Compile Include="Clases\Compomentes.cs" />
+    <Compile Include="Clases\ICompomentes.cs" />
     <Compile Include="Clases\Util.cs" />
+    <Compile Include="Connected Services\ServiceFacturaComputarizadaStandar\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -7208,6 +7259,12 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceFacturaComputarizadaStandar\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

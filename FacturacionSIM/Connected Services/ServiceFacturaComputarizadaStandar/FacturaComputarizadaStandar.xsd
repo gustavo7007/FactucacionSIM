@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://controller.fest.fac.sre.sin.gob.bo/" targetNamespace="http://controller.fest.fac.sre.sin.gob.bo/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="anulacionFacturaComputarizada" type="tns:anulacionFacturaComputarizada" />
+  <xs:element name="anulacionFacturaComputarizadaResponse" type="tns:anulacionFacturaComputarizadaResponse" />
+  <xs:element name="recepcionFacturaComputarizada" type="tns:recepcionFacturaComputarizada" />
+  <xs:element name="recepcionFacturaComputarizadaResponse" type="tns:recepcionFacturaComputarizadaResponse" />
+  <xs:element name="recepcionPaqueteFacturaComputarizada" type="tns:recepcionPaqueteFacturaComputarizada" />
+  <xs:element name="recepcionPaqueteFacturaComputarizadaResponse" type="tns:recepcionPaqueteFacturaComputarizadaResponse" />
+  <xs:element name="validacionAnulacionFacturaComputariazada" type="tns:validacionAnulacionFacturaComputariazada" />
+  <xs:element name="validacionAnulacionFacturaComputariazadaResponse" type="tns:validacionAnulacionFacturaComputariazadaResponse" />
+  <xs:element name="validacionRecepcionFacturaComputarizada" type="tns:validacionRecepcionFacturaComputarizada" />
+  <xs:element name="validacionRecepcionFacturaComputarizadaResponse" type="tns:validacionRecepcionFacturaComputarizadaResponse" />
+  <xs:element name="validacionRecepcionPaqueteFacturaComputarizada" type="tns:validacionRecepcionPaqueteFacturaComputarizada" />
+  <xs:element name="validacionRecepcionPaqueteFacturaComputarizadaResponse" type="tns:validacionRecepcionPaqueteFacturaComputarizadaResponse" />
+  <xs:element name="verificarConexion" type="tns:verificarConexion" />
+  <xs:element name="verificarConexionResponse" type="tns:verificarConexionResponse" />
+  <xs:complexType name="recepcionPaqueteFacturaComputarizada">
+    <xs:sequence>
+      <xs:element name="codigoSistema" type="xs:string" />
+      <xs:element name="codigoAmbiente" type="xs:int" />
+      <xs:element name="codigoEmision" type="xs:int" />
+      <xs:element name="codigoModalidad" type="xs:int" />
+      <xs:element name="nit" type="xs:long" />
+      <xs:element name="cuis" type="xs:string" />
+      <xs:element name="cufd" type="xs:string" />
+      <xs:element name="codigoDocumentoFiscal" type="xs:int" />
+      <xs:element name="codigoDocumentoSector" type="xs:int" />
+      <xs:element name="codigoSucursal" type="xs:int" />
+      <xs:element name="codigoPuntoVenta" type="xs:long" />
+      <xs:element name="fechaEnvio" type="xs:string" />
+      <xs:element name="archivo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recepcionPaqueteFacturaComputarizadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaListaRegistroRecepcionesSoapDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="respuestaListaRegistroRecepcionesSoapDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoEstado" type="xs:int" />
+      <xs:element minOccurs="0" name="codigoRecepcion" type="xs:long" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="listaCodigosRespuestas" nillable="true" type="xs:int" />
+      <xs:element name="transaccion" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validacionRecepcionPaqueteFacturaComputarizada">
+    <xs:sequence>
+      <xs:element name="codigoSistema" type="xs:string" />
+      <xs:element name="codigoAmbiente" type="xs:int" />
+      <xs:element name="codigoEmision" type="xs:int" />
+      <xs:element name="codigoModalidad" type="xs:int" />
+      <xs:element name="nit" type="xs:long" />
+      <xs:element name="cuis" type="xs:string" />
+      <xs:element name="cufd" type="xs:string" />
+      <xs:element name="codigoDocumentoFiscal" type="xs:int" />
+      <xs:element name="codigoDocumentoSector" type="xs:int" />
+      <xs:element name="codigoSucursal" type="xs:int" />
+      <xs:element name="codigoPuntoVenta" type="xs:long" />
+      <xs:element name="codigoRecepcion" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validacionRecepcionPaqueteFacturaComputarizadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaValidacionRecepcionPaqueteDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="respuestaValidacionRecepcionPaqueteDto">
+    <xs:sequence>
+      <xs:element name="codigoEstado" type="xs:int" />
+      <xs:element name="codigoRecepcion" type="xs:long" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="listaErrores" nillable="true" type="tns:recepcionErrorDetalleDto" />
+      <xs:element name="transaccion" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recepcionErrorDetalleDto">
+    <xs:sequence>
+      <xs:element name="codigoRecepcionIndividual" type="xs:long" />
+      <xs:element minOccurs="0" name="cuf" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="listaCodigosError" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="numeroFactura" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="anulacionFacturaComputarizada">
+    <xs:sequence>
+      <xs:element name="codigoSistema" type="xs:string" />
+      <xs:element name="codigoAmbiente" type="xs:int" />
+      <xs:element name="nit" type="xs:long" />
+      <xs:element name="cuis" type="xs:string" />
+      <xs:element name="cufd" type="xs:string" />
+      <xs:element name="codigoDocumentoFiscal" type="xs:int" />
+      <xs:element name="codigoDocumentoSector" type="xs:int" />
+      <xs:element name="codigoSucursal" type="xs:int" />
+      <xs:element name="codigoPuntoVenta" type="xs:long" />
+      <xs:element name="pinAnulacion" type="xs:long" />
+      <xs:element name="numeroDocumentoFiscal" type="xs:long" />
+      <xs:element name="cuf" type="xs:string" />
+      <xs:element name="email" type="xs:string" />
+      <xs:element name="celular" type="xs:long" />
+      <xs:element name="codigoMotivo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="anulacionFacturaComputarizadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaListaRegistroRecepcionesSoapDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recepcionFacturaComputarizada">
+    <xs:sequence>
+      <xs:element name="codigoSistema" type="xs:string" />
+      <xs:element name="codigoAmbiente" type="xs:int" />
+      <xs:element name="codigoEmision" type="xs:int" />
+      <xs:element name="codigoModalidad" type="xs:int" />
+      <xs:element name="nit" type="xs:long" />
+      <xs:element name="cuis" type="xs:string" />
+      <xs:element name="cufd" type="xs:string" />
+      <xs:element name="codigoDocumentoFiscal" type="xs:int" />
+      <xs:element name="codigoDocumentoSector" type="xs:int" />
+      <xs:element name="codigoSucursal" type="xs:int" />
+      <xs:element name="codigoPuntoVenta" type="xs:long" />
+      <xs:element name="fechaEnvio" type="xs:string" />
+      <xs:element name="archivo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recepcionFacturaComputarizadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaListaRegistroRecepcionesSoapDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarConexion">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="verificarConexionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validacionAnulacionFacturaComputariazada">
+    <xs:sequence>
+      <xs:element name="codigoSistema" type="xs:string" />
+      <xs:element name="codigoAmbiente" type="xs:int" />
+      <xs:element name="nit" type="xs:long" />
+      <xs:element name="cuis" type="xs:string" />
+      <xs:element name="cufd" type="xs:string" />
+      <xs:element name="codigoDocumentoFiscal" type="xs:int" />
+      <xs:element name="codigoDocumentoSector" type="xs:int" />
+      <xs:element name="codigoSucursal" type="xs:int" />
+      <xs:element name="codigoPuntoVenta" type="xs:long" />
+      <xs:element name="pinAnulacion" type="xs:long" />
+      <xs:element name="numeroDocumentoFiscal" type="xs:long" />
+      <xs:element name="cuf" type="xs:string" />
+      <xs:element name="email" type="xs:string" />
+      <xs:element name="celular" type="xs:long" />
+      <xs:element name="codigoMotivo" type="xs:int" />
+      <xs:element name="codigoRecepcion" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validacionAnulacionFacturaComputariazadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaListaRegistroRecepcionesSoapDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validacionRecepcionFacturaComputarizada">
+    <xs:sequence>
+      <xs:element name="codigoSistema" type="xs:string" />
+      <xs:element name="codigoAmbiente" type="xs:int" />
+      <xs:element name="codigoEmision" type="xs:int" />
+      <xs:element name="codigoModalidad" type="xs:int" />
+      <xs:element name="nit" type="xs:long" />
+      <xs:element name="cuis" type="xs:string" />
+      <xs:element name="cufd" type="xs:string" />
+      <xs:element name="codigoDocumentoFiscal" type="xs:int" />
+      <xs:element name="codigoDocumentoSector" type="xs:int" />
+      <xs:element name="codigoSucursal" type="xs:int" />
+      <xs:element name="codigoPuntoVenta" type="xs:long" />
+      <xs:element name="codigoRecepcion" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validacionRecepcionFacturaComputarizadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaListaRegistroRecepcionesSoapDto" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
