@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FACTURAUSERModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="Texto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Controlador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Accion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MenuPadre" Type="Int32" />
+    <Property Name="Orden" Type="Int32" />
+    <Property Name="EsGlobal" Type="Boolean" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Permisoes" Relationship="Self.FK_Permiso_Menu" FromRole="Menu" ToRole="Permiso" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="PerfilID" />
+    </Key>
+    <Property Name="PerfilNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PerfilDescripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PerfilHabilitado" Type="Boolean" />
+    <Property Name="PerfilID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.JoinPerfilToUsuario" FromRole="Perfil" ToRole="Usuario" />
+    <NavigationProperty Name="Permisoes" Relationship="Self.JoinPermisoToPerfil" FromRole="Perfil" ToRole="Permiso" />
+  </EntityType>
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="PermisoID" />
+    </Key>
+    <Property Name="PermisoNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PermisoPadreID" Type="Int32" />
+    <Property Name="PermisoOrden" Type="Int32" />
+    <Property Name="PermisoID" Type="Int32" Nullable="false" />
+    <Property Name="PermisoMenuID" Type="Int32" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_Permiso_Menu" FromRole="Permiso" ToRole="Menu" />
+    <NavigationProperty Name="Permiso1" Relationship="Self.FK_Permiso_Permiso1" FromRole="Permiso" ToRole="Permiso1" />
+    <NavigationProperty Name="Permiso2" Relationship="Self.FK_Permiso_Permiso1" FromRole="Permiso1" ToRole="Permiso" />
+    <NavigationProperty Name="Perfils" Relationship="Self.JoinPermisoToPerfil" FromRole="Permiso" ToRole="Perfil" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.JoinPermisoToUsuario" FromRole="Permiso" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioNombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioApellido1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioApellido2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioTelefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioContrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioHabilitado" Type="Boolean" />
+    <Property Name="UsuarioEsSuperAdmin" Type="Boolean" />
+    <Property Name="UsuarioCambiarContrasena" Type="Boolean" />
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UsuaruoIPRestringidoes" Relationship="Self.FK_UsuaruoIPRestringido_Usuario" FromRole="Usuario" ToRole="UsuaruoIPRestringido" />
+    <NavigationProperty Name="Perfils" Relationship="Self.JoinPerfilToUsuario" FromRole="Usuario" ToRole="Perfil" />
+    <NavigationProperty Name="Permisoes" Relationship="Self.JoinPermisoToUsuario" FromRole="Usuario" ToRole="Permiso" />
+  </EntityType>
+  <EntityType Name="UsuaruoIPRestringido">
+    <Key>
+      <PropertyRef Name="usuaruoIPRestringidoID" />
+    </Key>
+    <Property Name="DireccionIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <Property Name="usuaruoIPRestringidoID" Type="Int32" Nullable="false" />
+    <Property Name="usuarioID" Type="Int32" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuaruoIPRestringido_Usuario" FromRole="UsuaruoIPRestringido" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Permiso_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Permiso">
+        <PropertyRef Name="PermisoMenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permiso_Permiso1">
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="0..1" />
+    <End Role="Permiso1" Type="Self.Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="PermisoID" />
+      </Principal>
+      <Dependent Role="Permiso1">
+        <PropertyRef Name="PermisoPadreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuaruoIPRestringido_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="UsuaruoIPRestringido" Type="Self.UsuaruoIPRestringido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="UsuaruoIPRestringido">
+        <PropertyRef Name="usuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JoinPerfilToUsuario">
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="*" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+  </Association>
+  <Association Name="JoinPermisoToPerfil">
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="*" />
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+  </Association>
+  <Association Name="JoinPermisoToUsuario">
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="FACTURAUSEREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Perfils" EntityType="Self.Perfil" />
+    <EntitySet Name="Permisoes" EntityType="Self.Permiso" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <EntitySet Name="UsuaruoIPRestringidoes" EntityType="Self.UsuaruoIPRestringido" />
+    <AssociationSet Name="FK_Permiso_Menu" Association="Self.FK_Permiso_Menu">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Permiso" EntitySet="Permisoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permiso_Permiso1" Association="Self.FK_Permiso_Permiso1">
+      <End Role="Permiso" EntitySet="Permisoes" />
+      <End Role="Permiso1" EntitySet="Permisoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuaruoIPRestringido_Usuario" Association="Self.FK_UsuaruoIPRestringido_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="UsuaruoIPRestringido" EntitySet="UsuaruoIPRestringidoes" />
+    </AssociationSet>
+    <AssociationSet Name="JoinPerfilToUsuario" Association="Self.JoinPerfilToUsuario">
+      <End Role="Perfil" EntitySet="Perfils" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="JoinPermisoToPerfil" Association="Self.JoinPermisoToPerfil">
+      <End Role="Perfil" EntitySet="Perfils" />
+      <End Role="Permiso" EntitySet="Permisoes" />
+    </AssociationSet>
+    <AssociationSet Name="JoinPermisoToUsuario" Association="Self.JoinPermisoToUsuario">
+      <End Role="Permiso" EntitySet="Permisoes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

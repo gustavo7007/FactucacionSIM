@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FACTURAUSERModelStoreContainer" CdmEntityContainer="FACTURAUSEREntities">
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="FACTURAUSERModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="MenuPadre" ColumnName="MenuPadre" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="EsGlobal" ColumnName="EsGlobal" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perfils">
+      <EntityTypeMapping TypeName="FACTURAUSERModel.Perfil">
+        <MappingFragment StoreEntitySet="Perfil">
+          <ScalarProperty Name="PerfilNombre" ColumnName="PerfilNombre" />
+          <ScalarProperty Name="PerfilDescripcion" ColumnName="PerfilDescripcion" />
+          <ScalarProperty Name="PerfilHabilitado" ColumnName="PerfilHabilitado" />
+          <ScalarProperty Name="PerfilID" ColumnName="PerfilID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permisoes">
+      <EntityTypeMapping TypeName="FACTURAUSERModel.Permiso">
+        <MappingFragment StoreEntitySet="Permiso">
+          <ScalarProperty Name="PermisoNombre" ColumnName="PermisoNombre" />
+          <ScalarProperty Name="PermisoPadreID" ColumnName="PermisoPadreID" />
+          <ScalarProperty Name="PermisoOrden" ColumnName="PermisoOrden" />
+          <ScalarProperty Name="PermisoID" ColumnName="PermisoID" />
+          <ScalarProperty Name="PermisoMenuID" ColumnName="PermisoMenuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="FACTURAUSERModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+          <ScalarProperty Name="UsuarioApellido1" ColumnName="UsuarioApellido1" />
+          <ScalarProperty Name="UsuarioApellido2" ColumnName="UsuarioApellido2" />
+          <ScalarProperty Name="UsuarioEmail" ColumnName="UsuarioEmail" />
+          <ScalarProperty Name="UsuarioTelefono" ColumnName="UsuarioTelefono" />
+          <ScalarProperty Name="UsuarioLogin" ColumnName="UsuarioLogin" />
+          <ScalarProperty Name="UsuarioContrasena" ColumnName="UsuarioContrasena" />
+          <ScalarProperty Name="UsuarioHabilitado" ColumnName="UsuarioHabilitado" />
+          <ScalarProperty Name="UsuarioEsSuperAdmin" ColumnName="UsuarioEsSuperAdmin" />
+          <ScalarProperty Name="UsuarioCambiarContrasena" ColumnName="UsuarioCambiarContrasena" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuaruoIPRestringidoes">
+      <EntityTypeMapping TypeName="FACTURAUSERModel.UsuaruoIPRestringido">
+        <MappingFragment StoreEntitySet="UsuaruoIPRestringido">
+          <ScalarProperty Name="DireccionIP" ColumnName="DireccionIP" />
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="usuaruoIPRestringidoID" ColumnName="usuaruoIPRestringidoID" />
+          <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="JoinPerfilToUsuario" TypeName="FACTURAUSERModel.JoinPerfilToUsuario" StoreEntitySet="JoinPerfilToUsuario">
+      <EndProperty Name="Perfil">
+        <ScalarProperty Name="PerfilID" ColumnName="perfilID" />
+      </EndProperty>
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="UsuarioID" ColumnName="usuarioID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JoinPermisoToPerfil" TypeName="FACTURAUSERModel.JoinPermisoToPerfil" StoreEntitySet="JoinPermisoToPerfil">
+      <EndProperty Name="Perfil">
+        <ScalarProperty Name="PerfilID" ColumnName="perfilID" />
+      </EndProperty>
+      <EndProperty Name="Permiso">
+        <ScalarProperty Name="PermisoID" ColumnName="permisoID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JoinPermisoToUsuario" TypeName="FACTURAUSERModel.JoinPermisoToUsuario" StoreEntitySet="JoinPermisoToUsuario">
+      <EndProperty Name="Permiso">
+        <ScalarProperty Name="PermisoID" ColumnName="permisoID" />
+      </EndProperty>
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="UsuarioID" ColumnName="usuarioID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FACTURAUSERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="JoinPerfilToUsuario">
+    <Key>
+      <PropertyRef Name="usuarioID" />
+      <PropertyRef Name="perfilID" />
+    </Key>
+    <Property Name="usuarioID" Type="int" Nullable="false" />
+    <Property Name="perfilID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JoinPermisoToPerfil">
+    <Key>
+      <PropertyRef Name="perfilID" />
+      <PropertyRef Name="permisoID" />
+    </Key>
+    <Property Name="perfilID" Type="int" Nullable="false" />
+    <Property Name="permisoID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JoinPermisoToUsuario">
+    <Key>
+      <PropertyRef Name="usuarioID" />
+      <PropertyRef Name="permisoID" />
+    </Key>
+    <Property Name="usuarioID" Type="int" Nullable="false" />
+    <Property Name="permisoID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="Texto" Type="varchar" MaxLength="100" />
+    <Property Name="Controlador" Type="varchar" MaxLength="100" />
+    <Property Name="Accion" Type="varchar" MaxLength="100" />
+    <Property Name="MenuPadre" Type="int" />
+    <Property Name="Orden" Type="int" />
+    <Property Name="EsGlobal" Type="bit" />
+    <Property Name="MenuID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="PerfilID" />
+    </Key>
+    <Property Name="PerfilNombre" Type="varchar" MaxLength="100" />
+    <Property Name="PerfilDescripcion" Type="varchar" MaxLength="100" />
+    <Property Name="PerfilHabilitado" Type="bit" />
+    <Property Name="PerfilID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="PermisoID" />
+    </Key>
+    <Property Name="PermisoNombre" Type="varchar" MaxLength="100" />
+    <Property Name="PermisoPadreID" Type="int" />
+    <Property Name="PermisoOrden" Type="int" />
+    <Property Name="PermisoID" Type="int" Nullable="false" />
+    <Property Name="PermisoMenuID" Type="int" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioNombre" Type="varchar" MaxLength="200" />
+    <Property Name="UsuarioApellido1" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioApellido2" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioEmail" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioTelefono" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioLogin" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioContrasena" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioHabilitado" Type="bit" />
+    <Property Name="UsuarioEsSuperAdmin" Type="bit" />
+    <Property Name="UsuarioCambiarContrasena" Type="bit" />
+    <Property Name="UsuarioID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuaruoIPRestringido">
+    <Key>
+      <PropertyRef Name="usuaruoIPRestringidoID" />
+    </Key>
+    <Property Name="DireccionIP" Type="varchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+    <Property Name="usuaruoIPRestringidoID" Type="int" Nullable="false" />
+    <Property Name="usuarioID" Type="int" />
+  </EntityType>
+  <Association Name="FK_JoinPerfilToUsuario_Perfil">
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+    <End Role="JoinPerfilToUsuario" Type="Self.JoinPerfilToUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="PerfilID" />
+      </Principal>
+      <Dependent Role="JoinPerfilToUsuario">
+        <PropertyRef Name="perfilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinPerfilToUsuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="JoinPerfilToUsuario" Type="Self.JoinPerfilToUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="JoinPerfilToUsuario">
+        <PropertyRef Name="usuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinPermisoToPerfil_Perfil">
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+    <End Role="JoinPermisoToPerfil" Type="Self.JoinPermisoToPerfil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="PerfilID" />
+      </Principal>
+      <Dependent Role="JoinPermisoToPerfil">
+        <PropertyRef Name="perfilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinPermisoToPerfil_Permiso">
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
+    <End Role="JoinPermisoToPerfil" Type="Self.JoinPermisoToPerfil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="PermisoID" />
+      </Principal>
+      <Dependent Role="JoinPermisoToPerfil">
+        <PropertyRef Name="permisoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinPermisoToUsuario_Permiso">
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
+    <End Role="JoinPermisoToUsuario" Type="Self.JoinPermisoToUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="PermisoID" />
+      </Principal>
+      <Dependent Role="JoinPermisoToUsuario">
+        <PropertyRef Name="permisoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinPermisoToUsuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="JoinPermisoToUsuario" Type="Self.JoinPermisoToUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="JoinPermisoToUsuario">
+        <PropertyRef Name="usuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permiso_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Permiso">
+        <PropertyRef Name="PermisoMenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permiso_Permiso1">
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="0..1" />
+    <End Role="Permiso1" Type="Self.Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="PermisoID" />
+      </Principal>
+      <Dependent Role="Permiso1">
+        <PropertyRef Name="PermisoPadreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuaruoIPRestringido_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="UsuaruoIPRestringido" Type="Self.UsuaruoIPRestringido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="UsuaruoIPRestringido">
+        <PropertyRef Name="usuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FACTURAUSERModelStoreContainer">
+    <EntitySet Name="JoinPerfilToUsuario" EntityType="Self.JoinPerfilToUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JoinPermisoToPerfil" EntityType="Self.JoinPermisoToPerfil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JoinPermisoToUsuario" EntityType="Self.JoinPermisoToUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuaruoIPRestringido" EntityType="Self.UsuaruoIPRestringido" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_JoinPerfilToUsuario_Perfil" Association="Self.FK_JoinPerfilToUsuario_Perfil">
+      <End Role="Perfil" EntitySet="Perfil" />
+      <End Role="JoinPerfilToUsuario" EntitySet="JoinPerfilToUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinPerfilToUsuario_Usuario" Association="Self.FK_JoinPerfilToUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="JoinPerfilToUsuario" EntitySet="JoinPerfilToUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinPermisoToPerfil_Perfil" Association="Self.FK_JoinPermisoToPerfil_Perfil">
+      <End Role="Perfil" EntitySet="Perfil" />
+      <End Role="JoinPermisoToPerfil" EntitySet="JoinPermisoToPerfil" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinPermisoToPerfil_Permiso" Association="Self.FK_JoinPermisoToPerfil_Permiso">
+      <End Role="Permiso" EntitySet="Permiso" />
+      <End Role="JoinPermisoToPerfil" EntitySet="JoinPermisoToPerfil" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinPermisoToUsuario_Permiso" Association="Self.FK_JoinPermisoToUsuario_Permiso">
+      <End Role="Permiso" EntitySet="Permiso" />
+      <End Role="JoinPermisoToUsuario" EntitySet="JoinPermisoToUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinPermisoToUsuario_Usuario" Association="Self.FK_JoinPermisoToUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="JoinPermisoToUsuario" EntitySet="JoinPermisoToUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permiso_Menu" Association="Self.FK_Permiso_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Permiso" EntitySet="Permiso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permiso_Permiso1" Association="Self.FK_Permiso_Permiso1">
+      <End Role="Permiso" EntitySet="Permiso" />
+      <End Role="Permiso1" EntitySet="Permiso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuaruoIPRestringido_Usuario" Association="Self.FK_UsuaruoIPRestringido_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuaruoIPRestringido" EntitySet="UsuaruoIPRestringido" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
