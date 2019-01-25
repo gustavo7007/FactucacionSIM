@@ -14,6 +14,7 @@ namespace FacturacionSIM.Controllers
 		{
 			icompomentes = compomentes;
 		}
+        //prueba gus
 		// GET: Home
         public ActionResult Index()
         {
